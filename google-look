@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ocean Google</title>
+</head>
+
+<body style="margin: 0; padding: 0; background-image:
+url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e'); background-size:
+cover; background-position: center; height: 100vh; font-family: Arial, sans-serif; color: white;
+text-align: center;">
+    <div style="position: relative; top: 30%; transform: translateY(-30%);">
+        <h1 style="font-size: 64px; font-weight: bold; color: white;">Google</h1>
+        <input type="text" placeholder="Surf online😂..." style="width: 50%; padding: 12px; font-size: 18px; border-radius: 25px; border: none;
+outline: none;">
+        <br><br>
+        <button style="padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; margin:
+5px; cursor: pointer;">
+            Google Search
+        </button>
+        <button style="padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; margin:
+5px; cursor: pointer;">
+            I'm Feeling Lucky
+        </button>
+    </div>
+</body>
+
+</html>
