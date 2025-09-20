@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Berkeley's Cafe</title>
+    <style>
+        body {
+            background-color: orange;
+            text-align: center;
+            font-family: Optima, Arial, sans-serif;
+        }
+
+        h2,
+        h3 {
+            margin: 10px 0;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px 20px;
+        }
+
+        select {
+            padding: 5px 10px;
+            font-family: Optima;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #fff0f5;
+            color: #333;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button#orderBtn {
+            background-color: #11401f;
+            color: white;
+        }
+
+        button#addBtn {
+            background-color: #1e80f8;
+            color: white;
+        }
+
+        button#extrasBtn {
+            background-color: #ff6600;
+            color: white;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.2);
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #totalCost {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: darkblue;
+            margin-top: 15px;
+        }
+
+        #extrasCost {
+            color: darkgreen;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 style="color:rgb(197, 46, 71);">Welcome!</h2>
+    <h1><i style="color:rgb(58, 52, 52);">Berkeley's Cafe</i></h1>
+
+    <table border="1" bgcolor="lightpink">
+        <tr>
+            <th>Eatables :)</th>
+            <th>Bucks</th>
+        </tr>
+        <tr style="color:#7b00ff;">
+            <td>Bouncy Burger</td>
+            <td>₹120</td>
+        </tr>
+        <tr style="color:rgb(195, 0, 255);">
+            <td>Peppy Pizza</td>
+            <td>₹250</td>
+        </tr>
+        <tr style="color:rgb(255,0,217);">
+            <td>Peri Peri Pasta</td>
+            <td>₹180</td>
+        </tr>
+        <tr>
+            <td>Steamy Sandwich</td>
+            <td>₹90</td>
+        </tr>
+    </table>
+
+    <br>
+    <label for="order"><b style="color:rgb(173, 9, 36);">Place my order :</b></label>
+    <select id="order">
+        <option value="Burger">Bouncy Burger</option>
+        <option value="Pizza">Peppy Pizza</option>
+        <option value="Pasta">Peri Peri Pasta</option>
+        <option value="Sandwich">Steamy Sandwich</option>
+    </select>
+    <button id="orderBtn" onclick="placeOrder()">That's my order!</button>
+
+    <br><br>
+    <label for="renew"><b style="color:rgb(31, 116, 214);">Add item :</b></label>
+    <select id="renew">
+        <option value="Burger">Bouncy Burger</option>
+        <option value="Pizza">Peppy Pizza</option>
+        <option value="Pasta">Peri Peri Pasta</option>
+        <option value="Sandwich">Steamy Sandwich</option>
+    </select>
+    <button id="addBtn" onclick="add()">Add item</button>
+
+    <h2 id="result" style="color:white;"></h2>
+    <h2 id="added" style="color:white;"></h2>
+    <h2 id="totalCost"></h2>
+
+    <h3 style="color:pink;">Add Extras:</h3>
+
+    <input type="checkbox" id="mayo" value="20">
+    <label for="mayo">Mayo (₹20)</label><br>
+
+    <input type="checkbox" id="cheese" value="30">
+    <label for="cheese">Cheese (₹30)</label><br>
+
+    <input type="checkbox" id="sauce" value="15">
+    <label for="sauce">Sauce (₹15)</label><br>
+
+    <input type="checkbox" id="oregano" value="10">
+    <label for="oregano">Oregano (₹10)</label><br>
+
+    <button id="extrasBtn" onclick="addExtras()">Add Extras</button>
+    <h2 id="extrasCost"></h2>
+
+    <script>
+        const menu = {
+            "Burger": 120,
+            "Pizza": 250,
+            "Pasta": 180,
+            "Sandwich": 90
+        };
+
+        let item1 = 0;       // main order
+        let item2 = 0;       // added item
+        let extrasTotal = 0; // extras
+
+        function placeOrder() {
+            let selected = document.getElementById("order").value;
+            item1 = menu[selected];
+            document.getElementById("result").innerHTML =
+                `You ordered <b>${selected}</b>. Price: ₹${item1}`;
+            updateTotal();
+        }
+
+        function add() {
+            let selected = document.getElementById("renew").value;
+            item2 = menu[selected];
+            document.getElementById("added").innerHTML =
+                `You added <b>${selected}</b>. Price: ₹${item2}`;
+            updateTotal();
+        }
+
+        function addExtras() {
+            extrasTotal = 0;
+            if (document.getElementById("mayo").checked) extrasTotal += 20;
+            if (document.getElementById("cheese").checked) extrasTotal += 30;
+            if (document.getElementById("sauce").checked) extrasTotal += 15;
+            if (document.getElementById("oregano").checked) extrasTotal += 10;
+
+            document.getElementById("extrasCost").innerHTML =
+                `Extras cost: ₹${extrasTotal}`;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let total = item1 + item2 + extrasTotal;
+            document.getElementById("totalCost").innerHTML =
+                `Total cost: ₹${total}`;
+        }
+    </script>
+
+</body>
+
+</html>
